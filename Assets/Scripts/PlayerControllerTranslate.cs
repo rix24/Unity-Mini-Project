@@ -21,10 +21,10 @@ public class PlayerControllerTranslate : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
 
-        if (Mathf.Abs(moveX) > 0.1f)
-            moveY = 0f;
-        else if (Mathf.Abs(moveY) > 0.1f)
-            moveX = 0f;
+        //if (Mathf.Abs(moveX) > 0.1f)
+        //    moveY = 0f;
+        //else if (Mathf.Abs(moveY) > 0.1f)
+        //    moveX = 0f;
 
         spriteRenderer.flipX = moveX < 0;
 
