@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class GatePuzzle : MonoBehaviour
 {
     public Button[] buttons; // Assign 3 buttons in inspector
-    public List<int> correctSequence = new List<int> { 2, 3, 1 };
+    public List<int> correctSequence;
     private List<int> inputSequence = new List<int>();
 
     public GameObject gateToOpen; // Assign gameObject gate
@@ -26,7 +26,12 @@ public class GatePuzzle : MonoBehaviour
 
     void Start()
     {
+
         gateController = gateToOpen.GetComponent<GateController>();
+
+        // Randomize the correctSequence list
+        ShuffleCorrectSequence();
+
         for (int i = 0; i < buttons.Length; i++)
         {
             int buttonID = i + 1;
@@ -78,6 +83,16 @@ public class GatePuzzle : MonoBehaviour
                 gateController.OpenGate(); // Open the gate
                 return;
             }
+        }
+    }
+    private void ShuffleCorrectSequence()
+    {
+        for (int i = correctSequence.Count - 1; i > 0; i--)
+        {
+            int randomIndex = Random.Range(0, i + 1);
+            int temp = correctSequence[i];
+            correctSequence[i] = correctSequence[randomIndex];
+            correctSequence[randomIndex] = temp;
         }
     }
 }

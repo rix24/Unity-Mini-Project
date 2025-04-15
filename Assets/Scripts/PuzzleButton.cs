@@ -4,12 +4,16 @@ public class PuzzleButton : MonoBehaviour
 {
     public int id;
     private bool canPress = false; // Default to false
-    private GameObject signpostText;
+    private GameObject chestText;
+    private Animator chestAnimator;
+    private AudioSource chestAudio;
 
     private void Start()
     {
-        signpostText = transform.GetChild(0).gameObject;
-        signpostText.SetActive(false); // Ensure the signpost text is hidden initially
+        chestAnimator = GetComponent<Animator>();
+        chestText = transform.GetChild(0).gameObject;
+        chestText.SetActive(false); // Ensure the signpost text is hidden initially
+        chestAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,7 +29,7 @@ public class PuzzleButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canPress = true; // Allow interaction
-            signpostText.SetActive(true); // Show the signpost text
+            chestText.SetActive(true); // Show the signpost text
         }
     }
 
@@ -34,13 +38,15 @@ public class PuzzleButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             canPress = false; // Disallow interaction
-            signpostText.SetActive(false); // Hide the signpost text
+            chestText.SetActive(false); // Hide the signpost text
         }
     }
 
     private void HandleButtonPress()
     {
         // Call the GatePuzzle instance with the specific button ID
+        chestAnimator.SetTrigger("openChest");
+        chestAudio.Play();
         GatePuzzle.instance.OnButtonPressed(id);
     }
 }
