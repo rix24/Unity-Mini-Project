@@ -34,6 +34,8 @@ public class GatePuzzleTile : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
     public GameObject gameOverText;
+    public GameObject directionsImage;
+    private float directionsTime = 2f;
     private MenuManager menuManager;
 
 
@@ -45,7 +47,7 @@ public class GatePuzzleTile : MonoBehaviour
     private void Start()
     {
         menuManager = FindObjectOfType<MenuManager>(true);
-
+        StartCoroutine(ShowDirections(directionsTime));
         UpdateHighScore();
         // menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
         if (isRandomised)
@@ -172,6 +174,13 @@ public class GatePuzzleTile : MonoBehaviour
             secondsPassed++;
             UpdateTime(secondsPassed);
         }
+    }
+
+    private IEnumerator ShowDirections(float directionsTime)
+    {
+        directionsImage.SetActive(true);
+        yield return new WaitForSeconds(directionsTime);
+        directionsImage.SetActive(false);
     }
 
     // menu

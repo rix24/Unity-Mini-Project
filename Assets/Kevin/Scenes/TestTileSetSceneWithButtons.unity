@@ -25692,6 +25692,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1705489862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 340860323461536212, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+  m_PrefabInstance: {fileID: 2129516555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1708078548 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1595016748875908284, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
@@ -26276,6 +26281,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 340860323461536212, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429721376189821345, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429721376189821345, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429721376189821345, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -850
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429721376189821345, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 6882300064294445504, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -26437,6 +26462,14 @@ PrefabInstance:
       propertyPath: highScoreText
       value: 
       objectReference: {fileID: 305822595}
+    - target: {fileID: 7696999784274457502, guid: 80f191ad64461604ca5fe4349f3dab23, type: 3}
+      propertyPath: directionsTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696999784274457502, guid: 80f191ad64461604ca5fe4349f3dab23, type: 3}
+      propertyPath: directionsImage
+      value: 
+      objectReference: {fileID: 1705489862}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
