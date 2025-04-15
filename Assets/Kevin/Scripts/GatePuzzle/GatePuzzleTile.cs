@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class GatePuzzleTile : MonoBehaviour
@@ -25,7 +26,16 @@ public class GatePuzzleTile : MonoBehaviour
     public AudioClip buttonPress;
     public AudioClip openGate;
     public AudioClip fail;
+
+
+    // UI controls
+
     public TextMeshProUGUI winLabel;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
+    public GameObject gameOverText;
+    private MenuManager menuManager;
+
 
     private void Awake()
     {
@@ -34,6 +44,10 @@ public class GatePuzzleTile : MonoBehaviour
 
     private void Start()
     {
+        menuManager = FindObjectOfType<MenuManager>(true);
+
+        UpdateHighScore();
+        // menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
         if (isRandomised)
         {
             SortSequence(correctSequence);
@@ -42,6 +56,22 @@ public class GatePuzzleTile : MonoBehaviour
 
         buttonTilePositions = new List<Vector3Int> { new Vector3Int(-9, -1, 0), new Vector3Int(-7, -1, 0), new Vector3Int(-4, -1, 0) };
         StartCoroutine(SecondsTimer());
+    }
+
+    private void Update()
+    {
+        if (!isGameActive && Input.GetKeyDown(KeyCode.Space))
+        {
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            string name = GetName();
+            if (name != null && secondsPassed < menuManager.userScores[name])
+            {
+                menuManager.userScores[name] = secondsPassed;
+            }
+            gameOverText.SetActive(false);
+            menuManager.menuUI.SetActive(true);
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -106,6 +136,7 @@ public class GatePuzzleTile : MonoBehaviour
                 playerAudioSource.PlayOneShot(win);
                 winLabel.text = $"Win! {secondsPassed} sec";
                 winLabel.gameObject.SetActive(true);
+                gameOverText.SetActive(true);
             }
         }
     }
@@ -139,6 +170,35 @@ public class GatePuzzleTile : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             secondsPassed++;
+            UpdateTime(secondsPassed);
         }
+    }
+
+    // menu
+    private void UpdateHighScore()
+    {
+        if (menuManager == null)
+        {
+            highScoreText.gameObject.SetActive(false);
+            return;
+        }
+        string name = GetName();
+        if (name == null) { return; }
+        highScoreText.text = $"Best Time: {name}: {menuManager.userScores[name]}";
+    }
+
+    private string GetName()
+    {
+        if (menuManager == null) { return null; }
+        string name = menuManager.nameInputField.text;
+        if (name == "") { return null; }
+        if (!menuManager.userScores.ContainsKey(name)) { return null; }
+
+        return name;
+    }
+
+    void UpdateTime(int secondsPassed)
+    {
+        scoreText.text = $"Time : {secondsPassed}";
     }
 }
