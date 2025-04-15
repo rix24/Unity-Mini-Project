@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,11 +8,16 @@ public class GatePuzzleTile : MonoBehaviour
 {
     private TileBase originalTile;
     private AudioSource playerAudioSource;
+    private int secondsPassed = 0;
+    private bool isGameActive = true;
+    private List<int> correctSequence = new List<int> { 2, 3, 1 };
+
     public Tilemap tilemap;
     public TileBase replaceTile;
     public Vector3Int tilePosGate = new Vector3Int(-3, 1, 0);
     public List<Vector3Int> buttonTilePositions;
-    public List<int> correctSequence = new List<int> { 2, 3, 1 };
+    public bool isRandomised = true;
+    
     public List<int> currentSequence = new List<int>();
 
     // Lazy Way
@@ -19,7 +25,6 @@ public class GatePuzzleTile : MonoBehaviour
     public AudioClip buttonPress;
     public AudioClip openGate;
     public AudioClip fail;
-    //
     public TextMeshProUGUI winLabel;
 
     private void Awake()
@@ -29,10 +34,15 @@ public class GatePuzzleTile : MonoBehaviour
 
     private void Start()
     {
+        if (isRandomised)
+        {
+            SortSequence(correctSequence);
+        }
         // hardwired by position could of used tile.name etc
-        buttonTilePositions = new List<Vector3Int> { new Vector3Int(-9, -1, 0), new Vector3Int(-7, -1, 0), new Vector3Int(-4, -1, 0) };
-    }
 
+        buttonTilePositions = new List<Vector3Int> { new Vector3Int(-9, -1, 0), new Vector3Int(-7, -1, 0), new Vector3Int(-4, -1, 0) };
+        StartCoroutine(SecondsTimer());
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -76,13 +86,38 @@ public class GatePuzzleTile : MonoBehaviour
 
                     tilemap.SetTile(tilePosGate, null);
                     Debug.Log("Gate opened!");
+                    
                     playerAudioSource.PlayOneShot(openGate);
                     // could run a coroutine to seperate
-                    playerAudioSource.PlayOneShot(win);
-                    winLabel.gameObject.SetActive(true);
+
                     currentSequence.Clear();
                 }
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Win"))
+        {
+            if (isGameActive)
+            {
+                isGameActive = false;
+                playerAudioSource.PlayOneShot(win);
+                winLabel.text = $"Win! {secondsPassed} sec";
+                winLabel.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void SortSequence(List<int> list)
+    {
+        int limit = list.Count;
+
+        for (int i = 0; i < limit; i++)
+        {
+            int j = Random.Range(i, limit);
+            (list[i], list[j]) = (list[j], list[i]);
         }
     }
 
@@ -96,5 +131,14 @@ public class GatePuzzleTile : MonoBehaviour
         currentSequence.Clear();
 
         Debug.Log("Wrong sequence, reset.");
+    }
+
+    private IEnumerator SecondsTimer()
+    {
+        while (isGameActive)
+        {
+            yield return new WaitForSeconds(1f);
+            secondsPassed++;
+        }
     }
 }

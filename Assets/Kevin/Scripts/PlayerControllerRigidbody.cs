@@ -10,7 +10,6 @@ public class PlayerControllerRigidbody : MonoBehaviour
     public Vector2 xRange = new Vector2(-5f, 5f);
     public Vector2 yRange = new Vector2(-3f, 3f);
 
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
