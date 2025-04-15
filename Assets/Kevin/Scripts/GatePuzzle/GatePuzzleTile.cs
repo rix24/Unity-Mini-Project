@@ -35,6 +35,7 @@ public class GatePuzzleTile : MonoBehaviour
     public TextMeshProUGUI highScoreText;
     public GameObject gameOverText;
     public GameObject directionsImage;
+    public GameObject infoText;
     private float directionsTime = 2f;
     private MenuManager menuManager;
 

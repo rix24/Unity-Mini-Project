@@ -30253,6 +30253,11 @@ Transform:
   - {fileID: 1186354437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &187851079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1929369694862770406, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
+  m_PrefabInstance: {fileID: 2129516555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &305822595 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5412205714038165605, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
@@ -39110,7 +39115,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1595016748875908284, guid: 624f1654b7714f140b7ea80b420a2ba0, type: 3}
   m_PrefabInstance: {fileID: 2129516555}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 187851079}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -41419,6 +41424,10 @@ PrefabInstance:
       propertyPath: tilemap
       value: 
       objectReference: {fileID: 612576362}
+    - target: {fileID: 7696999784274457502, guid: 80f191ad64461604ca5fe4349f3dab23, type: 3}
+      propertyPath: infoText
+      value: 
+      objectReference: {fileID: 187851079}
     - target: {fileID: 7696999784274457502, guid: 80f191ad64461604ca5fe4349f3dab23, type: 3}
       propertyPath: winLabel
       value: 
