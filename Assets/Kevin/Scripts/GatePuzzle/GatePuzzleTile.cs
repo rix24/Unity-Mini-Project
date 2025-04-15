@@ -11,7 +11,7 @@ public class GatePuzzleTile : MonoBehaviour
     private AudioSource playerAudioSource;
     private int secondsPassed = 0;
     private bool isGameActive = true;
-    private List<int> correctSequence = new List<int> { 2, 3, 1 };
+    private List<int> correctSequence = new List<int> { 1, 2, 3 };
 
     public Tilemap tilemap;
     public TileBase replaceTile;
@@ -56,7 +56,7 @@ public class GatePuzzleTile : MonoBehaviour
         }
         // hardwired by position could of used tile.name etc
 
-        buttonTilePositions = new List<Vector3Int> { new Vector3Int(-9, -1, 0), new Vector3Int(-7, -1, 0), new Vector3Int(-4, -1, 0) };
+        buttonTilePositions = new List<Vector3Int> { new Vector3Int(2, 3, 0), new Vector3Int(-2, -20, 0), new Vector3Int(-56, -2, 0) };
         StartCoroutine(SecondsTimer());
     }
 
@@ -84,7 +84,7 @@ public class GatePuzzleTile : MonoBehaviour
             {
                 Vector3 contactWorldPos = collision.contacts[0].point;
                 Vector3Int tilePos = tilemap.WorldToCell(contactWorldPos);
-                
+                Debug.Log(tilePos);
                 if (tilePos == tilePosGate) { return; }
 
                 int index = buttonTilePositions.IndexOf(tilePos) + 1;
