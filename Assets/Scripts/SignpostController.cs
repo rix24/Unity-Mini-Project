@@ -35,7 +35,6 @@ public class SignpostController : MonoBehaviour
     private IEnumerator SetSignpostText()
     {
         yield return null;
-        Debug.Log(gatePuzzle.correctSequence[0]);
         signpostText.text = $"Find chest {gatePuzzle.correctSequence[0]}, chest {gatePuzzle.correctSequence[1]}, then finally chest {gatePuzzle.correctSequence[2]}";
         signpostTextObject.SetActive(false);
     }

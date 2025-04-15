@@ -347,6 +347,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2902240715015549272, guid: c34eefdaad5fd45a8b20105aa7d45e41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2902240715015549272, guid: c34eefdaad5fd45a8b20105aa7d45e41, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 6938406320485578023, guid: c34eefdaad5fd45a8b20105aa7d45e41, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -425,6 +433,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6938406320485578023, guid: c34eefdaad5fd45a8b20105aa7d45e41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219395252168548259, guid: c34eefdaad5fd45a8b20105aa7d45e41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219395252168548259, guid: c34eefdaad5fd45a8b20105aa7d45e41, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

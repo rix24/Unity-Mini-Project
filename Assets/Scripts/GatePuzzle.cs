@@ -9,6 +9,7 @@ public class GatePuzzle : MonoBehaviour
 
     public GameObject gateToOpen; // Assign gameObject gate
     private GateController gateController;
+    private AudioSource gateAudio;
 
     public static GatePuzzle instance { get; set; }
 
@@ -28,7 +29,7 @@ public class GatePuzzle : MonoBehaviour
     {
 
         gateController = gateToOpen.GetComponent<GateController>();
-
+        gateAudio = GetComponent<AudioSource>();
         // Randomize the correctSequence list
         ShuffleCorrectSequence();
 
@@ -57,7 +58,7 @@ public class GatePuzzle : MonoBehaviour
         
 
         if (inputSequence.Count == correctSequence.Count)
-        {
+        {            
             gateController.OpenGate(); // Open the gate
 
             // play succes tune
@@ -79,6 +80,7 @@ public class GatePuzzle : MonoBehaviour
             } else
             {
                 Debug.Log("Correct Sequence");
+                gateAudio.Play();
                 inputSequence.Clear(); // Reset after success if needed
                 gateController.OpenGate(); // Open the gate
                 return;
